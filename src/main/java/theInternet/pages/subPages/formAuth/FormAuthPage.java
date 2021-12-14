@@ -7,16 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternet.base.Base;
+import theInternet.utils.Utils;
 
 public class FormAuthPage extends Base {
     protected WebDriver driver;
 
-    private WebDriverWait wait;
-
     public FormAuthPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, 10);
     }
 
     @FindBy(name = "username")
@@ -30,14 +28,14 @@ public class FormAuthPage extends Base {
 
     @FindBy(id = "flash")
     private WebElement loginFailedMsg;
-    
+
     /**
      * send text to username input
      *
      * @param username
      */
     public void sendTextToUsernameInput(String username) {
-        waitForElementVisibility(usernameInput);
+        Utils.waitForElementVisibility(this.driver,usernameInput);
         usernameInput.sendKeys(username);
     }
 
@@ -47,7 +45,7 @@ public class FormAuthPage extends Base {
      * @param password
      */
     public void sendTextToPasswordInput(String password) {
-        waitForElementVisibility(passwordInput);
+        Utils.waitForElementVisibility(this.driver,passwordInput);
         passwordInput.sendKeys(password);
     }
 
@@ -57,7 +55,7 @@ public class FormAuthPage extends Base {
      * @return SecureAreaPage object
      */
     public SecureAreaPage clickOnLoginButton() {
-        waitForElementToBeClickable(loginButton);
+        Utils.waitForElementToBeClickable(this.driver,loginButton);
         loginButton.click();
         return new SecureAreaPage(this.driver);
     }
@@ -69,7 +67,7 @@ public class FormAuthPage extends Base {
      */
     public boolean isLoginFailedMsgDisplayed() {
         try {
-            waitForElementVisibility(loginFailedMsg);
+            Utils.waitForElementVisibility(this.driver,loginFailedMsg);
             return loginFailedMsg.isDisplayed();
         } catch (Exception e) {
             return false;
@@ -83,18 +81,18 @@ public class FormAuthPage extends Base {
      */
     public String getLoginMsgStatus() {
         try {
-            waitForElementVisibility(loginFailedMsg);
+            Utils.waitForElementVisibility(this.driver,loginFailedMsg);
             return loginFailedMsg.getText();
         } catch (Exception e) {
             return null;
         }
     }
 
-    private void waitForElementVisibility(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    private void waitForElementToBeClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
+//    private void waitForElementVisibility(WebElement element) {
+//        wait.until(ExpectedConditions.visibilityOf(element));
+//    }
+//
+//    private void waitForElementToBeClickable(WebElement element) {
+//        wait.until(ExpectedConditions.elementToBeClickable(element));
+//    }
 }

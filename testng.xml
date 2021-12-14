@@ -3,6 +3,12 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/AbdElRahman/IdeaProjects/TheInternet">
         <classes>
+            <class name="theInternet.pages.subPages.DropdownPageTest">
+                <methods>
+                    <include name="testSelectingOptionsFromTheDropdownList"/>
+                    <include name="testSelectingInvalidOptionFromTheDropdownList"/>
+                </methods>
+            </class>
             <class name="theInternet.pages.subPages.formAuth.FormAuthPageTest">
                 <methods>
                     <include name="testValidUsernameValidPassword"/>

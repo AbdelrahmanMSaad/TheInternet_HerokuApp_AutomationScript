@@ -2,7 +2,7 @@ package theInternet.base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import theInternet.pages.subPages.formAuth.FormAuthPage;
+import theInternet.pages.subPages.DropdownPage;
 import theInternet.pages.homePage.HomePage;
 import theInternet.utils.Utils;
 
@@ -61,17 +61,15 @@ public class Base {
 
         return new HomePage(this.driver);
     }
-
+//
 //    public static void main(String[] args) {
 //        Base base = new Base();
 //        base.initializeConfigurations();
 //        HomePage homePage = base.openHomePage();
-//        FormAuthPage formAuthPage = homePage.openFormAuthPage();
-//        String username = "tomsmith", password = "SuperSecretPassword!";
-//        formAuthPage.sendTextToUsernameInput(username);
-//        formAuthPage.sendTextToPasswordInput(password);
-//        formAuthPage.clickOnLoginButton();
-//        System.out.println(formAuthPage.isLoginFailedMsgDisplayed());
+//        DropdownPage dropdownPage = homePage.openDropdownPage();
+//        String option = "Option 2";
+//        dropdownPage.selectFromTheDropdownList(option);
+//        System.out.println(dropdownPage.getSelectedOption());
 //    }
 
     /**

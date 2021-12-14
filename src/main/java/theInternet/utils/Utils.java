@@ -1,8 +1,12 @@
 package theInternet.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternet.base.Base;
 
 public class Utils extends Base {
@@ -31,5 +35,15 @@ public class Utils extends Base {
      */
     public static String getConfigFilePath() {
         return System.getProperty("user.dir") + "\\src\\main\\resources\\config.properties";
+    }
+
+    public static void waitForElementVisibility(WebDriver driver,WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForElementToBeClickable(WebDriver driver,WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

@@ -9,7 +9,7 @@ public class FormAuthPageTest extends Base {
     public FormAuthPage formAuthPage;
     public SecureAreaPage secureAreaPage;
 
-    SoftAssert softAssert = new SoftAssert();
+    private SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void testValidUsernameValidPassword() {

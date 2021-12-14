@@ -4,10 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternet.base.Base;
-import theInternet.pages.homePage.HomePage;
+import theInternet.utils.Utils;
 
 public class SecureAreaPage extends Base {
     protected WebDriver driver;
@@ -33,16 +32,17 @@ public class SecureAreaPage extends Base {
      * @return boolean
      */
     public boolean isLoginSuccessMsgDisplayed() {
-        waitForElementVisibility(loginStatusAlert);
+        Utils.waitForElementVisibility(this.driver,loginStatusAlert);
         return loginStatusAlert.isDisplayed();
     }
 
     /**
      * This method is to get text from the login status alert
-     * @return  String
+     *
+     * @return String
      */
-    public String getLoginSuccessMsg(){
-        waitForElementVisibility(loginStatusAlert);
+    public String getLoginSuccessMsg() {
+        Utils.waitForElementVisibility(this.driver,loginStatusAlert);
         return loginStatusAlert.getText();
     }
 
@@ -52,16 +52,8 @@ public class SecureAreaPage extends Base {
      * @return FormAuthPage object
      */
     public FormAuthPage clickOnLogoutButton() {
-        waitForElementVisibility(logoutButton);
+        Utils.waitForElementVisibility(this.driver, logoutButton);
         logoutButton.click();
         return new FormAuthPage(this.driver);
-    }
-
-    private void waitForElementVisibility(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    private void waitForElementToBeClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }
