@@ -33,7 +33,7 @@ public class DropdownPageTest extends Base {
     public void testSelectingInvalidOptionFromTheDropdownList(){
         String optionOne = "Option1";
         dropdownPage.selectFromTheDropdownList(optionOne);
-        softAssert.assertNotEquals(dropdownPage.getSelectedOption(),optionOne,"Invalid option or option doesn't exist");
+        softAssert.assertNotEquals(dropdownPage.getSelectedOption(),optionOne);
         softAssert.assertAll();
     }
 }
