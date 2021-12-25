@@ -37,13 +37,13 @@ public class Utils extends Base {
         return System.getProperty("user.dir") + "\\src\\main\\resources\\config.properties";
     }
 
-    public static void waitForElementVisibility(WebDriver driver,WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver,10);
+    public static void waitForElementVisibility(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitForElementToBeClickable(WebDriver driver,WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver,10);
+    public static void waitForElementToBeClickable(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

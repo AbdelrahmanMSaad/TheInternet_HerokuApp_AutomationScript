@@ -3,6 +3,7 @@ package theInternet.base;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import theInternet.pages.homePage.HomePage;
+import theInternet.pages.subPages.CheckboxesPage;
 import theInternet.utils.Utils;
 
 import java.io.File;
@@ -13,19 +14,26 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Base {
+    public HomePage homePage;
     protected WebDriver driver;
-
     private File file;
     private FileInputStream fileInputStream;
     private Properties properties;
-
     private String browser;
-
     private String uRL;
 
-    public HomePage homePage;
+    public static void main(String[] args) {
+        Base base = new Base();
+        base.initializeTestConfigurations();
+        HomePage homePage = base.openHomePage();
+        CheckboxesPage checkboxesPage = homePage.openCheckboxesPage();
+        checkboxesPage.clickOnFirstCheckBox();
+        System.out.println(checkboxesPage.isFirstCheckboxChecked());
+        checkboxesPage.clickOnFirstCheckBox();
+        System.out.println(checkboxesPage.isFirstCheckboxChecked());
+    }
 
-    public void initializeTestConfigurations(){
+    public void initializeTestConfigurations() {
         file = new File(Utils.getConfigFilePath());
         try {
             fileInputStream = new FileInputStream(file);
@@ -43,13 +51,14 @@ public class Base {
     }
 
     /**
-     *This method is to open the home page
-     * @return  HomePage Object
+     * This method is to open the home page
+     *
+     * @return HomePage Object
      */
-    public HomePage openHomePage(){
-        if(browser.equalsIgnoreCase("chrome")){
+    public HomePage openHomePage() {
+        if (browser.equalsIgnoreCase("chrome")) {
             driver = Utils.openChrome();
-        }else if(browser.equalsIgnoreCase("firefox")){
+        } else if (browser.equalsIgnoreCase("firefox")) {
             driver = Utils.openFirefox();
         }
         //open the website
@@ -60,16 +69,6 @@ public class Base {
 
         return new HomePage(this.driver);
     }
-//
-//    public static void main(String[] args) {
-//        Base base = new Base();
-//        base.initializeConfigurations();
-//        HomePage homePage = base.openHomePage();
-//        DropdownPage dropdownPage = homePage.openDropdownPage();
-//        String option = "Option 2";
-//        dropdownPage.selectFromTheDropdownList(option);
-//        System.out.println(dropdownPage.getSelectedOption());
-//    }
 
     /**
      * This method is to close the current tab

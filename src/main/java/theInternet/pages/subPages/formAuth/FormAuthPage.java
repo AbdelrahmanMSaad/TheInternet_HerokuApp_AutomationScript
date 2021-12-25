@@ -4,30 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternet.base.Base;
 import theInternet.utils.Utils;
 
 public class FormAuthPage extends Base {
     protected WebDriver driver;
+    @FindBy(name = "username")
+    private WebElement usernameInput;
+    @FindBy(name = "password")
+    private WebElement passwordInput;
+    @FindBy(xpath = "//i[contains(text(),'Login')]")
+    private WebElement loginButton;
+    @FindBy(id = "flash")
+    private WebElement loginFailedMsg;
 
     public FormAuthPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(name = "username")
-    private WebElement usernameInput;
-
-    @FindBy(name = "password")
-    private WebElement passwordInput;
-
-    @FindBy(xpath = "//i[contains(text(),'Login')]")
-    private WebElement loginButton;
-
-    @FindBy(id = "flash")
-    private WebElement loginFailedMsg;
 
     /**
      * send text to username input
@@ -35,7 +29,7 @@ public class FormAuthPage extends Base {
      * @param username
      */
     public void sendTextToUsernameInput(String username) {
-        Utils.waitForElementVisibility(this.driver,usernameInput);
+        Utils.waitForElementVisibility(this.driver, usernameInput);
         usernameInput.sendKeys(username);
     }
 
@@ -45,7 +39,7 @@ public class FormAuthPage extends Base {
      * @param password
      */
     public void sendTextToPasswordInput(String password) {
-        Utils.waitForElementVisibility(this.driver,passwordInput);
+        Utils.waitForElementVisibility(this.driver, passwordInput);
         passwordInput.sendKeys(password);
     }
 
@@ -55,7 +49,7 @@ public class FormAuthPage extends Base {
      * @return SecureAreaPage object
      */
     public SecureAreaPage clickOnLoginButton() {
-        Utils.waitForElementToBeClickable(this.driver,loginButton);
+        Utils.waitForElementToBeClickable(this.driver, loginButton);
         loginButton.click();
         return new SecureAreaPage(this.driver);
     }
@@ -67,7 +61,7 @@ public class FormAuthPage extends Base {
      */
     public boolean isLoginFailedMsgDisplayed() {
         try {
-            Utils.waitForElementVisibility(this.driver,loginFailedMsg);
+            Utils.waitForElementVisibility(this.driver, loginFailedMsg);
             return loginFailedMsg.isDisplayed();
         } catch (Exception e) {
             return false;
@@ -81,7 +75,7 @@ public class FormAuthPage extends Base {
      */
     public String getLoginMsgStatus() {
         try {
-            Utils.waitForElementVisibility(this.driver,loginFailedMsg);
+            Utils.waitForElementVisibility(this.driver, loginFailedMsg);
             return loginFailedMsg.getText();
         } catch (Exception e) {
             return null;

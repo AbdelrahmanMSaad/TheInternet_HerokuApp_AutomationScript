@@ -12,6 +12,10 @@ public class SecureAreaPage extends Base {
     protected WebDriver driver;
 
     private WebDriverWait wait;
+    @FindBy(id = "flash")
+    private WebElement loginStatusAlert;
+    @FindBy(xpath = "//i[contains(text(),'Logout')]")
+    private WebElement logoutButton;
 
     public SecureAreaPage(WebDriver driver) {
         this.driver = driver;
@@ -19,20 +23,13 @@ public class SecureAreaPage extends Base {
         wait = new WebDriverWait(driver, 10);
     }
 
-
-    @FindBy(id = "flash")
-    private WebElement loginStatusAlert;
-
-    @FindBy(xpath = "//i[contains(text(),'Logout')]")
-    private WebElement logoutButton;
-
     /**
      * This method is to check if the login success msg is displayed
      *
      * @return boolean
      */
     public boolean isLoginSuccessMsgDisplayed() {
-        Utils.waitForElementVisibility(this.driver,loginStatusAlert);
+        Utils.waitForElementVisibility(this.driver, loginStatusAlert);
         return loginStatusAlert.isDisplayed();
     }
 
@@ -42,7 +39,7 @@ public class SecureAreaPage extends Base {
      * @return String
      */
     public String getLoginSuccessMsg() {
-        Utils.waitForElementVisibility(this.driver,loginStatusAlert);
+        Utils.waitForElementVisibility(this.driver, loginStatusAlert);
         return loginStatusAlert.getText();
     }
 

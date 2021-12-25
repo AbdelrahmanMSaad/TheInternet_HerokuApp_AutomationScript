@@ -6,18 +6,17 @@ import org.testng.asserts.SoftAssert;
 import theInternet.base.Base;
 
 public class FormAuthPageTest extends Base {
+    private final SoftAssert softAssert = new SoftAssert();
     public FormAuthPage formAuthPage;
     public SecureAreaPage secureAreaPage;
 
-    private SoftAssert softAssert = new SoftAssert();
-
-    private void openFormAuthPage(){
+    @BeforeMethod
+    private void openFormAuth() {
         formAuthPage = homePage.openFormAuthPage();
     }
 
     @Test
     public void testValidUsernameValidPassword() {
-        openFormAuthPage();
         String username = "tomsmith", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -30,8 +29,7 @@ public class FormAuthPageTest extends Base {
     }
 
     @Test
-    public void testValidUsernameInvalidPassword(){
-        openFormAuthPage();
+    public void testValidUsernameInvalidPassword() {
         String username = "tomsmith", password = "invalid password";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -44,8 +42,7 @@ public class FormAuthPageTest extends Base {
     }
 
     @Test
-    public void testInvalidUsernameValidPassword(){
-        openFormAuthPage();
+    public void testInvalidUsernameValidPassword() {
         String username = "invalid username", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -53,13 +50,12 @@ public class FormAuthPageTest extends Base {
         softAssert.assertTrue(formAuthPage.isLoginFailedMsgDisplayed());
         String expectedInvalidUsernameMsg = "Your username is invalid!\n" +
                 "×";
-        softAssert.assertEquals(formAuthPage.getLoginMsgStatus(),expectedInvalidUsernameMsg);
+        softAssert.assertEquals(formAuthPage.getLoginMsgStatus(), expectedInvalidUsernameMsg);
         softAssert.assertAll();
     }
 
     @Test
-    public void testInvalidUsernameInvalidPassword(){
-        openFormAuthPage();
+    public void testInvalidUsernameInvalidPassword() {
         String username = "invalid username", password = "invalid password";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -67,12 +63,12 @@ public class FormAuthPageTest extends Base {
         softAssert.assertTrue(formAuthPage.isLoginFailedMsgDisplayed());
         String expectedInvalidUsernameMsg = "Your username is invalid!\n" +
                 "×";
-        softAssert.assertEquals(formAuthPage.getLoginMsgStatus(),expectedInvalidUsernameMsg);
+        softAssert.assertEquals(formAuthPage.getLoginMsgStatus(), expectedInvalidUsernameMsg);
         softAssert.assertAll();
     }
 
-    @Test void testLogout(){
-        openFormAuthPage();
+    @Test
+    void testLogout() {
         String username = "tomsmith", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);

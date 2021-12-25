@@ -9,14 +9,13 @@ import theInternet.utils.Utils;
 
 public class InputsPage extends Base {
     protected WebDriver driver;
+    @FindBy(tagName = "input")
+    private WebElement numberInput;
 
     public InputsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(tagName = "input")
-    private WebElement numberInput;
 
     /**
      * This method is to send text to number input
@@ -38,8 +37,8 @@ public class InputsPage extends Base {
         return numberInput.getAttribute("value");
     }
 
-    public void clearNumberInput(){
-        Utils.waitForElementVisibility(this.driver,numberInput);
+    public void clearNumberInput() {
+        Utils.waitForElementVisibility(this.driver, numberInput);
         numberInput.clear();
     }
 }

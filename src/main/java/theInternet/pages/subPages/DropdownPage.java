@@ -10,14 +10,13 @@ import theInternet.utils.Utils;
 
 public class DropdownPage extends Base {
     protected WebDriver driver;
+    @FindBy(id = "dropdown")
+    private WebElement dropdownList;
 
     public DropdownPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(id = "dropdown")
-    private WebElement dropdownList;
 
     /**
      * This method is to select an option from the dropdown list via text
@@ -25,10 +24,10 @@ public class DropdownPage extends Base {
      * @param option String
      */
     public void selectFromTheDropdownList(String option) {
-        try{
+        try {
             Utils.waitForElementVisibility(this.driver, dropdownList);
             getSelectInstanceFromTheDropdownList().selectByVisibleText(option);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("The option doesn't exist");
         }
     }

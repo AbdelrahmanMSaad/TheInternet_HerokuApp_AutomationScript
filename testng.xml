@@ -2,9 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/AbdElRahman/IdeaProjects/TheInternet">
-        <parameter name="browser" value="chrome"/>
-        <parameter name="URL" value="https://the-internet.herokuapp.com/"/>
         <classes>
+            <class name="theInternet.pages.subPages.CheckboxesPageTest">
+                <methods>
+                    <include name="testCheckingTheFirstCheckbox"/>
+                    <include name="testCheckingTheSecondCheckbox"/>
+                </methods>
+            </class>
             <class name="theInternet.pages.subPages.DropdownPageTest">
                 <methods>
                     <include name="testSelectingOptionsFromTheDropdownList"/>
