@@ -1,18 +1,45 @@
 package theInternet.pages.subPages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternet.base.Base;
+import theInternet.utils.Utils;
 
 public class InputsPage extends Base {
     protected WebDriver driver;
 
-    protected WebDriverWait wait;
-
-    public InputsPage(WebDriver driver){
+    public InputsPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
-        wait = new WebDriverWait(this.driver,10);
+        PageFactory.initElements(driver, this);
+    }
+
+    @FindBy(tagName = "input")
+    private WebElement numberInput;
+
+    /**
+     * This method is to send text to number input
+     *
+     * @param number
+     */
+    public void sendTextToNumberInput(String number) {
+        Utils.waitForElementVisibility(this.driver, numberInput);
+        numberInput.sendKeys(number);
+    }
+
+    /**
+     * This method is to get the text inside the number input
+     *
+     * @return String
+     */
+    public String getTextInsideNumberInput() {
+        Utils.waitForElementVisibility(this.driver, numberInput);
+        return numberInput.getAttribute("value");
+    }
+
+    public void clearNumberInput(){
+        Utils.waitForElementVisibility(this.driver,numberInput);
+        numberInput.clear();
     }
 }

@@ -2,7 +2,6 @@ package theInternet.base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import theInternet.pages.subPages.DropdownPage;
 import theInternet.pages.homePage.HomePage;
 import theInternet.utils.Utils;
 
@@ -22,11 +21,11 @@ public class Base {
 
     private String browser;
 
-    private  String uRL;
+    private String uRL;
 
     public HomePage homePage;
 
-    public void initializeConfigurations(){
+    public void initializeTestConfigurations(){
         file = new File(Utils.getConfigFilePath());
         try {
             fileInputStream = new FileInputStream(file);
@@ -93,11 +92,11 @@ public class Base {
 
     @BeforeTest
     public void beforeTest() {
-        this.initializeConfigurations();
     }
 
     @BeforeClass
     public void beforeClass() {
+        this.initializeTestConfigurations();
     }
 
     @BeforeMethod

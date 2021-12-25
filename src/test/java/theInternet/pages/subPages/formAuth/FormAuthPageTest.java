@@ -11,8 +11,13 @@ public class FormAuthPageTest extends Base {
 
     private SoftAssert softAssert = new SoftAssert();
 
+    private void openFormAuthPage(){
+        formAuthPage = homePage.openFormAuthPage();
+    }
+
     @Test
     public void testValidUsernameValidPassword() {
+        openFormAuthPage();
         String username = "tomsmith", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -26,6 +31,7 @@ public class FormAuthPageTest extends Base {
 
     @Test
     public void testValidUsernameInvalidPassword(){
+        openFormAuthPage();
         String username = "tomsmith", password = "invalid password";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -39,6 +45,7 @@ public class FormAuthPageTest extends Base {
 
     @Test
     public void testInvalidUsernameValidPassword(){
+        openFormAuthPage();
         String username = "invalid username", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -52,6 +59,7 @@ public class FormAuthPageTest extends Base {
 
     @Test
     public void testInvalidUsernameInvalidPassword(){
+        openFormAuthPage();
         String username = "invalid username", password = "invalid password";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -64,6 +72,7 @@ public class FormAuthPageTest extends Base {
     }
 
     @Test void testLogout(){
+        openFormAuthPage();
         String username = "tomsmith", password = "SuperSecretPassword!";
         formAuthPage.sendTextToUsernameInput(username);
         formAuthPage.sendTextToPasswordInput(password);
@@ -74,12 +83,5 @@ public class FormAuthPageTest extends Base {
                 "×";
         softAssert.assertEquals(formAuthPage.getLoginMsgStatus(), expectedSuccessfulLogout);
         softAssert.assertAll();
-    }
-
-    @BeforeMethod
-    @Override
-    public void beforeMethod() {
-        super.beforeMethod();
-        formAuthPage = homePage.openFormAuthPage();
     }
 }

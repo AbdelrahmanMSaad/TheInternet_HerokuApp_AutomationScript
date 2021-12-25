@@ -12,14 +12,13 @@ public class DropdownPageTest extends Base {
 
     private SoftAssert softAssert = new SoftAssert();
 
-    @BeforeMethod
-    public void beforeMethod(){
-        super.beforeMethod();
+    private void openDropdownPage(){
         dropdownPage = homePage.openDropdownPage();
     }
 
     @Test
     public void testSelectingOptionsFromTheDropdownList(){
+        openDropdownPage();
         String optionOne = "Option 1";
         dropdownPage.selectFromTheDropdownList(optionOne);
         softAssert.assertEquals(dropdownPage.getSelectedOption(),optionOne);
@@ -31,6 +30,7 @@ public class DropdownPageTest extends Base {
 
     @Test
     public void testSelectingInvalidOptionFromTheDropdownList(){
+        openDropdownPage();
         String optionOne = "Option1";
         dropdownPage.selectFromTheDropdownList(optionOne);
         softAssert.assertNotEquals(dropdownPage.getSelectedOption(),optionOne);
