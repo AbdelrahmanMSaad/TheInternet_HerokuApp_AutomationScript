@@ -3,6 +3,13 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/AbdElRahman/IdeaProjects/TheInternet">
         <classes>
+            <class name="theInternet.pages.subPages.AddRemoveElementsPageTest">
+                <methods>
+                    <include name="addElementAndCheckThatTheDeleteElementIsVisible"/>
+                    <include name="addMultipleElementsAndCheckThatTheDeleteElementAreVisible"/>
+                    <include name="testDeletingAllDisplayedElements"/>
+                </methods>
+            </class>
             <class name="theInternet.pages.subPages.CheckboxesPageTest">
                 <methods>
                     <include name="testCheckingTheFirstCheckbox"/>
@@ -18,6 +25,11 @@
             <class name="theInternet.pages.subPages.InputsPageTest">
                 <methods>
                     <include name="testSendingNumbersToTheInputElement"/>
+                </methods>
+            </class>
+            <class name="theInternet.pages.subPages.KeyPressesPageTest">
+                <methods>
+                    <include name="testSendingTextToTheInput"/>
                 </methods>
             </class>
             <class name="theInternet.pages.subPages.formAuth.FormAuthPageTest">

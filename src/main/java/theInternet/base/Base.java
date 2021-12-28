@@ -3,7 +3,7 @@ package theInternet.base;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import theInternet.pages.homePage.HomePage;
-import theInternet.pages.subPages.CheckboxesPage;
+import theInternet.pages.subPages.AddRemoveElementsPage;
 import theInternet.utils.Utils;
 
 import java.io.File;
@@ -26,11 +26,16 @@ public class Base {
         Base base = new Base();
         base.initializeTestConfigurations();
         HomePage homePage = base.openHomePage();
-        CheckboxesPage checkboxesPage = homePage.openCheckboxesPage();
-        checkboxesPage.clickOnFirstCheckBox();
-        System.out.println(checkboxesPage.isFirstCheckboxChecked());
-        checkboxesPage.clickOnFirstCheckBox();
-        System.out.println(checkboxesPage.isFirstCheckboxChecked());
+        AddRemoveElementsPage addRemoveElementsPage = homePage.openAddRemoveElementsPage();
+        addRemoveElementsPage.addSingleElement();
+        addRemoveElementsPage.addSingleElement();
+        addRemoveElementsPage.addSingleElement();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        addRemoveElementsPage.deleteAllDisplayedDeleteBtns();
     }
 
     public void initializeTestConfigurations() {

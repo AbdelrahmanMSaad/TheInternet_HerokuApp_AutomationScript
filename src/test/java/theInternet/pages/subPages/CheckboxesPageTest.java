@@ -18,11 +18,13 @@ public class CheckboxesPageTest extends Base {
     public void testCheckingTheFirstCheckbox() {
         checkboxesPage.clickOnFirstCheckBox();
         softAssert.assertTrue(checkboxesPage.isFirstCheckboxChecked());
+        softAssert.assertAll();
     }
 
     @Test
     public void testCheckingTheSecondCheckbox() {
         checkboxesPage.clickOnSecondCheckBox();
         softAssert.assertFalse(checkboxesPage.isSecondCheckboxChecked());
+        softAssert.assertAll();
     }
 }
