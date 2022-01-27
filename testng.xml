@@ -10,6 +10,13 @@
                     <include name="testDeletingAllDisplayedElements"/>
                 </methods>
             </class>
+            <class name="theInternet.pages.subPages.AlertsPageTest">
+                <methods>
+                    <include name="testOpeningAnAlertAndAcceptingIt"/>
+                    <include name="testOpeningAnAlertAndDismissingIt"/>
+                    <include name="testSendingKeysToTheAlert"/>
+                </methods>
+            </class>
             <class name="theInternet.pages.subPages.CheckboxesPageTest">
                 <methods>
                     <include name="testCheckingTheFirstCheckbox"/>

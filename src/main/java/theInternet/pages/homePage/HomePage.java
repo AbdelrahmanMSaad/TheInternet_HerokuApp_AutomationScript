@@ -13,17 +13,21 @@ public class HomePage extends Base {
     protected WebDriver driver;
     @FindBy(partialLinkText = "Add/Remove Elements")
     private WebElement addRemoveElementsButton;
+
     @FindBy(partialLinkText = "Checkboxes")
     private WebElement checkboxesButton;
     @FindBy(partialLinkText = "Dropdown")
     private WebElement dropdownButton;
+    @FindBy(partialLinkText = "File Upload")
+    private WebElement fileUploadButton;
     @FindBy(partialLinkText = "Form Authentication")
     private WebElement formAuthButton;
     @FindBy(partialLinkText = "Inputs")
     private WebElement inputsButton;
+    @FindBy(partialLinkText = "JavaScript Alerts")
+    private WebElement javaScriptAlertButton;
     @FindBy(partialLinkText = "Key Presses")
     private WebElement keyPressesButton;
-
 
 
     public HomePage(WebDriver driver) {
@@ -33,13 +37,15 @@ public class HomePage extends Base {
 
     /**
      * This method is to open the add remove page
-     * @return  AddRemoveElementsPage object
+     *
+     * @return AddRemoveElementsPage object
      */
-    public AddRemoveElementsPage openAddRemoveElementsPage(){
-        Utils.waitForElementVisibility(this.driver,addRemoveElementsButton);
+    public AddRemoveElementsPage openAddRemoveElementsPage() {
+        Utils.waitForElementVisibility(this.driver, addRemoveElementsButton);
         addRemoveElementsButton.click();
         return new AddRemoveElementsPage(this.driver);
     }
+
     /**
      * This method is to open the check boxes page
      *
@@ -60,6 +66,16 @@ public class HomePage extends Base {
         Utils.waitForElementVisibility(this.driver, dropdownButton);
         this.dropdownButton.click();
         return new DropdownPage(this.driver);
+    }
+
+    /**
+     * This method is to open File Uplaod Page
+     * @return  FileUploadPage object
+     */
+    public FileUploadPage openFileUploadPage(){
+        Utils.waitForElementVisibility(this.driver,fileUploadButton);
+        fileUploadButton.click();
+        return new FileUploadPage(this.driver);
     }
 
     /**
@@ -84,8 +100,19 @@ public class HomePage extends Base {
         return new InputsPage(this.driver);
     }
 
-    public KeyPressesPage openKeyPressesPage(){
-        Utils.waitForElementVisibility(this.driver,keyPressesButton);
+    /**
+     * This method is to open the javascript Alerts page
+     *
+     * @return AlertsPage
+     */
+    public AlertsPage openAlertsPage() {
+        Utils.waitForElementVisibility(this.driver, javaScriptAlertButton);
+        javaScriptAlertButton.click();
+        return new AlertsPage(this.driver);
+    }
+
+    public KeyPressesPage openKeyPressesPage() {
+        Utils.waitForElementVisibility(this.driver, keyPressesButton);
         keyPressesButton.click();
         return new KeyPressesPage(this.driver);
     }

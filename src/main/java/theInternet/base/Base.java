@@ -110,7 +110,7 @@ public class Base {
 
     @AfterMethod
     public void afterMethod() {
-        this.closeCurrentTab();
+//        this.closeCurrentTab();
     }
 
     @AfterClass
@@ -120,7 +120,7 @@ public class Base {
 
     @AfterTest
     public void afterTest() {
-        this.tearDown();
+//        this.tearDown();
     }
 
     @AfterSuite
